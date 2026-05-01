@@ -5,18 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Snake Game :P</title>
 
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+  <!-- preconnect first -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Encode+Sans+SC:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- all fonts in one request -->
+  <link href="https://fonts.googleapis.com/css2?family=Luxurious+Script&family=Permanent+Marker&family=Encode+Sans+SC:wght@100..900&display=swap" rel="stylesheet">
+
+  <!-- your css last -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <div id="gameContainer">
     <canvas id="gameBoard" width="400" height="400"></canvas>
-    <div id = "scoreText">0</div>
-    <button id="resetButt">reset</button>
+    <div id="scoreText">0</div>
+    <button id="resetButt">Reset</button>
   </div>
 
   <script src="script.js"></script>

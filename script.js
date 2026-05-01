@@ -19,11 +19,12 @@ let foodX;
 let foodY;
 let score = 0;
 let snake = [
-    {x:0 , y: 0},
-    {x:unitsize , y:0},
-    {x:unitsize*2 , y:0},
+   
+    {x:unitsize*4 , y:0},
     {x:unitsize*3 , y:0},
-    {x:unitsize*4 , y:0}
+    {x:unitsize*2 , y:0}, 
+    {x:unitsize , y:0},
+    {x:0 , y: 0}
 ];
 
 window.addEventListener("keydown" , changeDirection);
@@ -35,7 +36,6 @@ function gameStart(){
     running = true;
     scoreText.textContent = score;
     generateFood();
-    drawFood();
     nextTick();
 };
 function nextTick(){
@@ -61,6 +61,7 @@ function clear(){
 };
 function generateFood(){
    function randomFood(min, max){
+    
          const num =Math.round((Math.random() * (max-min) + min) / unitsize) * unitsize;
          return num; 
 }
@@ -82,7 +83,7 @@ function moveSnake(){
         //score++
         score+=1;
         scoreText.textContent= score;
-        generateFood;
+        generateFood();
     }
     else{
         snake.pop();
@@ -98,9 +99,81 @@ function drawSnake(){
 };
 
 function changeDirection(event){
-   const key = event.keyCode;
-     console.log(key);
+  // const key = 
+  // also use wasd keys 
+     const keyPressed = event.key;
+     //is y vel = -unisize condition 
+     //question why is it the signs like  that
+     const goUp= (yspeed== -unitsize);
+     const goDown= (yspeed== unitsize);
+     const goLeft= (xspeed== -unitsize);
+     const goRight= (xspeed== unitsize);
+
+     switch  (true){
+        case(keyPressed=="ArrowUp"&& !goDown):
+            xspeed=0;
+            yspeed= -unitsize;
+            break;
+        //if we wanna go DOWN 
+        case(keyPressed== "ArrowDown" && !goUp):
+            xspeed = 0;
+            yspeed = unitsize;
+            break;
+            // go LEFT
+        case(keyPressed== "ArrowLeft" && !goRight):
+            xspeed= -unitsize;
+            yspeed= 0 ;
+            break;
+         case(keyPressed== "ArrowRight" && !goLeft):
+            xspeed= unitsize;
+            yspeed= 0 ;
+            break;
+     };
+ 
+//    console.log(event.key);
+     
 };
-function checkGameOver(){};
-function displayGameOver(){};
-function resetGame(){};
+function checkGameOver(){
+    switch(true){
+        case(snake.slice(1).some(bodypart=> bodypart.x===snake[0].x && bodypart.y === snake[0].y)):
+            running = false;
+            break;
+        case(snake[0].x < 0||snake[0].x >= gameWidth ||snake[0].y < 0 
+            || snake[0].y >= gameHeight):
+            running = false;
+            break;
+    }
+    // displayGameOver();
+};
+function displayGameOver(){
+    //ctx.fillStyle="pink";
+    ctx.fillStyle="rgba(99, 6, 6, 0.56)";
+    ctx.fillRect(0, 0, gameWidth, gameHeight);
+
+    ctx.font = "60px 'Luxurious Script'";
+    ctx.fillStyle= "pink";
+    ctx.textAlign ="center" ;
+    ctx.fillText("Game  Over !", gameWidth/2, gameHeight/2);
+
+};
+function resetGame(){
+    if (!running){
+         score=0;
+    xspeed=unitsize;
+    yspeed=0;
+    snake = [
+   
+    {x:unitsize*4 , y:0},
+    {x:unitsize*3 , y:0},
+    {x:unitsize*2 , y:0}, 
+    {x:unitsize , y:0},
+    {x:0 , y: 0}
+];
+    running = false;
+    gameStart();
+
+    }
+   
+
+    
+};
