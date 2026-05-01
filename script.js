@@ -10,6 +10,9 @@ const snakeColor = "pink";
 const snakeBorder = "brown";
 const apple = "red";
 const unitsize = 20;
+let highscore=null;
+
+
 
 let running = false;
 let xspeed = unitsize;
@@ -35,6 +38,12 @@ gameStart();
 function gameStart(){
     running = true;
     scoreText.textContent = score;
+    highscore = localStorage.getItem("highscore");
+    if (highscore==null){
+        highscore = 0 ;
+        highscoreText.textContent= 0;
+    }
+   // drawSnake();
     generateFood();
     nextTick();
 };
@@ -47,7 +56,7 @@ function nextTick(){
             drawSnake();
             checkGameOver();
             nextTick();
-        } ,100);
+        } ,70);
     }
 
     else {
@@ -110,27 +119,27 @@ function changeDirection(event){
      const goRight= (xspeed== unitsize);
 
      switch  (true){
-        case(keyPressed=="ArrowUp"&& !goDown):
+        case((keyPressed == "ArrowUp" || keyPressed == "w") && !goDown):
             xspeed=0;
             yspeed= -unitsize;
             break;
         //if we wanna go DOWN 
-        case(keyPressed== "ArrowDown" && !goUp):
+        case((keyPressed=="ArrowDown" || keyPressed== "s") && !goUp):
             xspeed = 0;
             yspeed = unitsize;
             break;
             // go LEFT
-        case(keyPressed== "ArrowLeft" && !goRight):
+        case((keyPressed== "ArrowLeft"|| keyPressed== "a") && !goRight):
             xspeed= -unitsize;
             yspeed= 0 ;
             break;
-         case(keyPressed== "ArrowRight" && !goLeft):
+         case((keyPressed== "ArrowRight"|| keyPressed=="d") && !goLeft):
             xspeed= unitsize;
             yspeed= 0 ;
             break;
      };
  
-//    console.log(event.key);
+  console.log(event.key);
      
 };
 function checkGameOver(){
@@ -142,6 +151,12 @@ function checkGameOver(){
             || snake[0].y >= gameHeight):
             running = false;
             break;
+    }
+    
+        if(score>highscore){
+            localStorage.setItem("highscore",score);
+            highscoreText.textContent = score;
+    
     }
     // displayGameOver();
 };

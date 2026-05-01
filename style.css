@@ -39,6 +39,16 @@
     
     
 }
+
+#highscoreText {
+  font-family: "Encode Sans SC", sans-serif;
+  font-size: 20PX;
+  font-weight: bold;
+  text-align: left;
+
+  color:rgb(130, 98, 63);
+
+}
 #scoreText{
    font-family: "Encode Sans SC", sans-serif;
   font-size: 70PX;
