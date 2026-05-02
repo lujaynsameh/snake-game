@@ -40,6 +40,20 @@
     
 }
 
+#Resetscore{
+   background-color: rgb(156, 114, 68);
+    font-size: 30px;
+    font-family: 'Luxurious Script', cursive;
+    padding: 10px 43px;
+    color:blanchedalmond;
+    border: 4px solid;
+    border-color: rgba(89, 29, 29, 0.983);
+    border-radius: 7px;
+    
+    cursor: pointer;
+    
+
+}
 #highscoreText {
   font-family: "Encode Sans SC", sans-serif;
   font-size: 20PX;

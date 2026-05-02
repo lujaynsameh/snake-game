@@ -10,7 +10,8 @@ const snakeColor = "pink";
 const snakeBorder = "brown";
 const apple = "red";
 const unitsize = 20;
-let highscore=null;
+//let highscore=null;
+const highscoreText = document.querySelector("#highscoreText");
 
 
 
@@ -41,8 +42,11 @@ function gameStart(){
     highscore = localStorage.getItem("highscore");
     if (highscore==null){
         highscore = 0 ;
-        highscoreText.textContent= 0;
     }
+    else {
+        highscore= Number(highscore);
+    }
+     highscoreText.textContent = "High Score: " + highscore; 
    // drawSnake();
     generateFood();
     nextTick();
@@ -154,8 +158,9 @@ function checkGameOver(){
     }
     
         if(score>highscore){
-            localStorage.setItem("highscore",score);
-            highscoreText.textContent = score;
+            highscore = score;
+            localStorage.setItem("highscore",highscore);
+            highscoreText.textContent = "High Score:" + score;
     
     }
     // displayGameOver();
