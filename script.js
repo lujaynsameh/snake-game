@@ -60,7 +60,7 @@ function gameStart(){
         highscore= Number(highscore);
     }
      highscoreText.textContent = "High Score: " + highscore; 
-   // drawSnake();
+   
     generateFood();
     nextTick();
 };
@@ -73,7 +73,7 @@ function nextTick(){
             drawSnake();
             checkGameOver();
             nextTick();
-        } ,75);
+        } ,100);
     }
 
     else {
@@ -93,6 +93,10 @@ function generateFood(){
 }
     foodX = randomFood(0,gameWidth - unitsize);
     foodY = randomFood(0,gameWidth - unitsize);
+
+    if (snake.some((bodypart) => bodypart.x === foodX && bodypart.y === foodY)) {
+        generateFood();
+  }
 };
 
 function drawFood(){
@@ -106,7 +110,7 @@ function moveSnake(){
     snake.unshift(head);
     //if food is eaten
     if(snake[0].x == foodX && snake[0].y == foodY ){
-        //score++
+        
         score+=1;
         scoreText.textContent= score;
         generateFood();
@@ -127,9 +131,8 @@ function drawSnake(){
 function changeDirection(event){
   // const key = 
   // also use wasd keys 
-     const keyPressed = event.key;
-     //is y vel = -unisize condition 
-     //question why is it the signs like  that
+     const keyPressed = event.key.toLowerCase();;
+     
      const goUp= (yspeed== -unitsize);
      const goDown= (yspeed== unitsize);
      const goLeft= (xspeed== -unitsize);
@@ -156,7 +159,7 @@ function changeDirection(event){
             break;
      };
  
-  console.log(event.key);
+
      
 };
 function checkGameOver(){
@@ -176,10 +179,10 @@ function checkGameOver(){
             highscoreText.textContent = "High Score:" + score;
     
     }
-    // displayGameOver();
+    
 };
 function displayGameOver(){
-    //ctx.fillStyle="pink";
+    
     ctx.fillStyle="rgba(33, 20, 20, 0.56)";
     ctx.fillRect(0, 0, gameWidth, gameHeight);
     

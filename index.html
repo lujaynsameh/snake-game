@@ -1,31 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Snake Game :P</title>
 
-  <!-- preconnect first -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <!-- all fonts in one request -->
-  <link href="https://fonts.googleapis.com/css2?family=Luxurious+Script&family=Permanent+Marker&family=Encode+Sans+SC:wght@100..900&display=swap" rel="stylesheet">
 
-  <!-- your css last -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Luxurious+Script&family=Permanent+Marker&family=Encode+Sans+SC:wght@100..900&display=swap"
+    rel="stylesheet">
+
+
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-  <div id="gameContainer">
+  < <div id="gameContainer">
+    <div id="highscoreContainer">
+      <div id="highscoreText">Highscore: 0</div>
+      <button id="resetScore">Reset score</button>
+    </div>
     <canvas id="gameBoard" width="400" height="400"></canvas>
     <div id="scoreText">0</div>
-    <button id="resetScore">Reset score</button>
-    <div id="highscoreText">Highscore: 0 </div>
     <button id="resetButt">Play</button>
+    </div>
 
-  </div>
 
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
+
 </html>
