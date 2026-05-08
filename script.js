@@ -3,12 +3,13 @@ const canvas = document.querySelector("#gameBoard");
 const ctx = canvas.getContext("2d");
 const scoreText = document.querySelector("#scoreText");
 const resetbutt = document.querySelector("#resetButt");
+const resethighscore = document.querySelector("#resetScore");
 const gameWidth = gameBoard.width;
 const gameHeight = gameBoard.height;
-const boardBackground = "blanchedalmond";
-const snakeColor = "pink";
-const snakeBorder = "brown";
-const apple = "red";
+const boardBackground = "rgb(0, 20, 39)";
+const snakeColor = "rgb(131, 242, 124)";
+const snakeBorder = "rgb(0, 20, 39)";
+const apple = "rgb(193, 41, 46)";
 const unitsize = 20;
 //let highscore=null;
 const highscoreText = document.querySelector("#highscoreText");
@@ -22,6 +23,7 @@ let yspeed = 0;
 let foodX;
 let foodY;
 let score = 0;
+let highscore = 0;
 let snake = [
    
     {x:unitsize*4 , y:0},
@@ -33,8 +35,19 @@ let snake = [
 
 window.addEventListener("keydown" , changeDirection);
 resetbutt.addEventListener("click" , resetGame);
+resethighscore.addEventListener("click" , resetHighScore);
 
 gameStart();
+
+function resetHighScore(){
+    if(!running){
+        highscore= 0;
+        localStorage.setItem("highscore", highscore);
+        highscoreText.textContent = "High Score: " + highscore;
+    } 
+  
+
+}
 
 function gameStart(){
     running = true;
@@ -60,7 +73,7 @@ function nextTick(){
             drawSnake();
             checkGameOver();
             nextTick();
-        } ,70);
+        } ,75);
     }
 
     else {
@@ -167,11 +180,12 @@ function checkGameOver(){
 };
 function displayGameOver(){
     //ctx.fillStyle="pink";
-    ctx.fillStyle="rgba(99, 6, 6, 0.56)";
+    ctx.fillStyle="rgba(33, 20, 20, 0.56)";
     ctx.fillRect(0, 0, gameWidth, gameHeight);
+    
 
-    ctx.font = "60px 'Luxurious Script'";
-    ctx.fillStyle= "pink";
+    ctx.font = "80px 'Luxurious Script'";
+    ctx.fillStyle= "rgb(222, 229, 238)";
     ctx.textAlign ="center" ;
     ctx.fillText("Game  Over !", gameWidth/2, gameHeight/2);
 
@@ -179,6 +193,7 @@ function displayGameOver(){
 function resetGame(){
     if (!running){
          score=0;
+         
     xspeed=unitsize;
     yspeed=0;
     snake = [
