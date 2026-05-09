@@ -131,7 +131,7 @@ function drawSnake(){
 function changeDirection(event){
   // const key = 
   // also use wasd keys 
-     const keyPressed = event.key.toLowerCase();;
+     const keyPressed = event.key;
      
      const goUp= (yspeed== -unitsize);
      const goDown= (yspeed== unitsize);
@@ -139,21 +139,21 @@ function changeDirection(event){
      const goRight= (xspeed== unitsize);
 
      switch  (true){
-        case((keyPressed == "ArrowUp" || keyPressed == "w") && !goDown):
+        case((keyPressed == "ArrowUp" || keyPressed.toLowerCase() == "w") && !goDown):
             xspeed=0;
             yspeed= -unitsize;
             break;
         //if we wanna go DOWN 
-        case((keyPressed=="ArrowDown" || keyPressed== "s") && !goUp):
+        case((keyPressed=="ArrowDown" || keyPressed.toLowerCase()== "s") && !goUp):
             xspeed = 0;
             yspeed = unitsize;
             break;
             // go LEFT
-        case((keyPressed== "ArrowLeft"|| keyPressed== "a") && !goRight):
+        case((keyPressed== "ArrowLeft"|| keyPressed.toLowerCase()== "a") && !goRight):
             xspeed= -unitsize;
             yspeed= 0 ;
             break;
-         case((keyPressed== "ArrowRight"|| keyPressed=="d") && !goLeft):
+         case((keyPressed== "ArrowRight"|| keyPressed.toLowerCase()=="d") && !goLeft):
             xspeed= unitsize;
             yspeed= 0 ;
             break;
